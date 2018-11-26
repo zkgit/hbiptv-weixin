@@ -1,0 +1,39 @@
+<div class="html dianlist" ng-controller="dianlistCtrl">
+	<div class="ptf l0 t0 wp100 z3">
+		<div class="toptitleline">
+			<a href="javascript:;" back class="ico back"></a>
+			<p class="text" ng-bind="toptil"></p>
+			<a href="#dianbo/choose?coltype={{sc.coltype}}" class="ico shai">筛选</a>
+		</div>
+		<div class="toptitleline_after"></div>
+		<div class="typelstable" id="J_typelstable">
+			<table>
+				<tr><td ng-repeat="v in typels"  on-finish-render-filters data-render="goscroll"><a href="javascript:;" ng-class="{active:tindex==$index}" ng-click="changetype(v,$index)" class="typelstable_ls">{{v.name}}</a></td></tr>
+			</table>
+		</div>
+	</div>
+	<div class="chanlsit bgcfff ovh" ng-class="{three:tindex!=0}" id="J_list">
+		<a href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.videoType}}&isMatch={{v.isMatched}}&vodId={{v.vodId}}" class="pitem" ng-repeat="v in list" on-finish-render-filters data-render="lazy">
+			<!-- <p class="pi_ico" showtvtype="v.epgs"></p> -->
+			<p class="pi_img alic"><img original="{{tindex!=0?(v.image):(v.hSmallImage?(v.hSmallImage):(v.image|webandroid|imgclip:'320x180'))}}" error="images/ico_df.png" class="loading ico lazy"></p>
+			<!--<p class="pi_img alic"><img original="{{tindex!=0?(v.image):(v.hasSamllHorizon==1?(v.hSmallImage):(v.image|webandroid|imgclip:'320x180'))}}" error="images/ico_df.png" class="loading ico lazy"></p>-->
+			<p class="pi_til">{{v.title}}</p>
+		</a>
+	</div>
+	<p class="alic ptb10" id="J_loading" ng-bind="loadtext"></p>
+
+	<div class="pop xuan" ng-show="pop.boxshow">
+		<div class="xuanbox bgcfff" ng-show="pop.xuan">
+			<div class="xuanlist ovh" ng-style="boxh" id="J_xuanbox">
+				<div class="xuantil pb10" ng-repeat="v in category">
+					<p class="til ovh ptr"><span class="tiltext">{{v.name}}</span></p>
+					<p class="ovh">
+						<a href="javascript:;" class="pls" vtype="{{v.filed}}" vval="{{vv}}" ng-repeat="vv in v.values">{{vv}}</a>
+					</p>
+				</div>
+			</div>
+			<a href="javascript:;" class="pbtn" ng-click="xuanze()">完成</a>
+		</div>
+	</div>
+</div>
+<div class="botline" botnav active=""></div>

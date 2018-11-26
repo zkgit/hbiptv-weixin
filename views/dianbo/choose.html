@@ -1,0 +1,24 @@
+<div class="html chooselist dianlist" ng-controller="chooseCtrl">
+	<div class="ptf l0 t0 wp100 z3">
+		<div class="toptitleline">
+			<a href="javascript:;" back class="ico back"></a>
+			<p class="text" ng-bind="toptil"></p>
+		</div>
+	</div>
+	<div id="choosetable">
+		<div class="choosetable" ng-repeat="v in category">
+			<table>
+				<tr><td ng-repeat="vv in v.values"><a href="javascript:;"  vtype="{{v.filed}}" vval="{{vv}}" class="choose_ls">{{vv}}</a></td></tr>
+			</table>
+		</div>
+	</div>
+	<div class="chanlsit three bgcfff ovh pt10" id="J_list">
+		<a href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.videoType}}&isMatch={{v.isMatched}}&vodId={{v.vodId}}" class="pitem" ng-repeat="v in list" on-finish-render-filters data-render="lazy">
+			<!-- <p class="pi_ico" showtvtype="v.epgs"></p> -->
+			<p class="pi_img alic"><img original="{{tindex!=0?(v.image):(v.image|webandroid|imgclip:'320x180')}}" error="images/ico_df.png" class="loading ico lazy"></p>
+			<p class="pi_til">{{v.title}}</p>
+		</a>
+	</div>
+	<p class="alic ptb10" id="J_loading" ng-bind="loadtext"></p>
+</div>
+<div class="botline" botnav active=""></div>

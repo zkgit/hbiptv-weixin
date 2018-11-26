@@ -1,0 +1,35 @@
+<div class="html index zhibo" ng-controller="zhiboCtrl">
+	<div class="indextopline" indextopline active="zhibo"></div>
+<div ng-show="net">
+	<div class="swipe {{net?'bgcfff':''}}" id="J_banner">
+		<div class="spbox">
+			<p class="spimg" ng-repeat="v in poster" on-finish-render-filters data-render="rbanner"><a class="dsb" ng-href="#/zhibo/detial?channelId={{v.channelId}}&ChannelCode={{v.code}}&channelName={{v.channelName}}"><img ng-src="{{v.bimage}}"></a></p>
+		</div>
+		<p class="poter"></p>
+	</div>
+	<!--style="{{isboxshow?'position:fixed;top:0.36rem;z-index:999;':''}}"-->
+	<div class="typelstable" id="typelstable" >
+		<table>
+			<tr><td ng-repeat="v in zblist" on-finish-render-filters data-render="jmtab"><a href="javascript:;" ng-class="{active:tindex==$index}" ng-click="changecn(v,$index)" class="typelstable_ls">{{v.type_name}}</a></td></tr>
+		</table>
+	</div>
+	<div  id="hcheng" style="height:0.44rem;display: none;"></div>
+	<!--<div  ng-show="isboxshow" id="hcheng" style="height:0.44rem;"></div>-->
+	<div class="chanlsit bgcfff" id="J_list">
+		<a href="#/zhibo/detial?cname={{v.zh_name}}&kankeId={{v.epgs[0].kankeId}}&vodId={{v.epgs[0].vodId}}&channelId={{v.id}}&ChannelCode={{v.code}}&channelName={{v.zh_name}}&frequency={{v.frequency}}" class="cnitem dsb c00" ng-repeat="v in list" on-finish-render-filters data-render="lazy">
+			<img src="images/icon_tm.png" class="ico_tm">
+			<p class="cnimg"><img original="{{v.epgs[0].hpic?v.epgs[0].hpic:v.icon}}" error="images/ico_df.png" class="loading ico lazy"></p>
+			<div class="mid">
+				<p class="lg"><img original="{{v.icon}}" error="images/ico_df.jpg" class="loading lgimg lazy">{{v.zh_name}}</p>
+				<ul class="cls">
+					<li class="li" ng-if="v.epgs.length==1&&!v.epgs[0].title"><p class="ellipsis">暂无节目单</p></li>
+					<li class="li" ng-show="v.epgs[0].title" ng-repeat="vv in v.epgs"><p class="ellipsis">{{vv.startTime}}&ensp;&ensp;{{vv.title}}</p></li>
+				</ul>
+			</div>
+		</a>
+	</div>
+	<p class="alic ptb10" id="J_loading" ng-bind="loadtext"></p>
+</div>
+<div class="html_loading" ng-show="!net" ><img src="images/loading.png" alt=""></div>
+</div>
+<div class="botline" botnav active="index"></div>

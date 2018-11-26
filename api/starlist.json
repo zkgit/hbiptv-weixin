@@ -1,0 +1,19 @@
+{
+    "responseHeader": {
+        "code": 200,
+        "msg": "获取影片相关明星数据成功",
+        "t": 1478228648798
+    },
+    "responseBody": [{
+        "id": 31377,
+        "actorName": "瑞秋·麦克亚当斯",
+        "localImageSmall": "http://tv.kanketv.com/image/starShow/150x150/30/304f0ba07e074b322a706bed0991b42f.jpg"
+        
+    },
+    {
+        "id": 40263,
+        "actorName": "阿尔弗雷德·莫里纳",
+        "localImageSmall": "http://tv.kanketv.com/image/starShow/150x150/90/90253ae61c07456e5fa65da0c0f17d9b.jpg"
+        
+    }]
+}

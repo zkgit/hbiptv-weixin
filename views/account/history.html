@@ -1,0 +1,25 @@
+<div class="html account" ng-controller="accounthisCtrl" ng-init="gettype('history')">
+	<div class="toptitleline">
+		<a href="javascript:;" back class="ico back"></a>
+		<p class="text">播放记录</p>
+		<a href="javascript:;" class="ico edit" ng-click="edit()"></a>
+	</div>
+	<div class="toptitleline_after"></div>
+	<div class="history ovh" ng-class="{active:isedit}">
+		<div class="pitem mt10 bgcfff" ng-repeat="v in list">
+			<!-- <label class="checklb"><input type="checkbox" name="" class="checkbox"></label> -->
+			<!--<a href="javascript:;" class="hsdel" ng-click="hsdel(v)">删除</a>-->
+			<div class="hsdel" ng-click="select()">
+				<input type="checkbox"  id="check{{$index}}">
+				<label for="check{{$index}}"  class="checkBox" ></label>
+			</div>
+			<a class="hsbox" href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.kankeId.split('_')[0]}}&isMatch={{v.isMatched}}&vodId={{v.vodID}}">
+				<div  class="hsimg"><span class="ico_play"></span><img ng-src="{{v.lpic|webandroid|imgclip:'200x110'}}"></div>
+				<p class="hstil ellipsis">{{v.title}}</p>
+				<p class="ellipsis c66 pt5" ng-if="v.kankeId.split('_')[0]!='film'&&v.darma">播放至 &ensp;{{v.darma}}</p>
+			</a>
+		</div>
+	</div>
+	<div class="bot" ng-show="isedit"><a href="javascript:;" ng-click="selectAll()"><img class="icon"src="{{allselect?'images/allselected.png':'images/unselectall.png'}}">全选</a><a href="javascript:;" ng-click="hsdel()" class="del"><span>删除</span></a></div>
+	<p class="alic ptb10" id="J_loading" ng-bind="loadtext"></p>
+</div>

@@ -1,0 +1,21 @@
+<div class="stardetial" ng-controller="stardetialCtrl">
+	<div class="toptitleline">
+		<a href="javascript:;" back class="ico back"></a>
+		<p class="text">个人简介</p>
+	</div>
+	<div class="toptitleline_after"></div>
+	<div class="topmess bgcfff p10 ptr">
+		<p class="himg pta l10 t10"><img ng-src="{{detial.localImageSmall}}"></p>
+		<p class="hname">{{detial.actorName}}</p>
+	</div>
+	<div class="intro p10 bgcfff" ng-click="getintro()">简介：{{intro}}</div>
+	<div class="recols bgcfff ovh p10 pt5 pb5" ng-if="islist">
+		<p class="til pb5">相关影片</p>
+		<div class="ovh list alic">
+			<a class="rels" href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.videoType}}&isMatch={{v.isMatched}}&vodId={{v.vodId}}" ng-repeat="v in list">
+				<p class="img"><img ng-src="{{v.image_mid}}"></p>
+				<p class="name ellipsis">{{v.name}}</p>
+			</a>
+		</div>
+	</div>
+</div>

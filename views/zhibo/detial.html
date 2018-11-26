@@ -1,0 +1,46 @@
+<div class="html index zbdetial" ng-controller="zhibodetialCtrl">
+	<div class="toptitleline">
+		<a href="javascript:;" back class="ico back"></a>
+		<p class="text" ng-bind="sc.channelName?sc.channelName:sc.cname"></p>
+	</div>
+	<div class="toptitletv">
+		<img src="images/tvline.png"  ng-show= "tvtui" style="position: absolute;right:0.36rem;top:0;">
+		<a href="javascript:;" class="ico tv" ng-show="tvtui" ng-click="tuisong()"></a>
+	</div>
+	<div class="toptitleline_after"></div>
+	<!--<video width="100%" height="100%" _preload="none" x-webkit-airplay="true" src="http://vod.v.jstv.com/2016/11/17/JSTV_JSWS_1479345461497_pZgkKi8_1633.mp4" poster="http://img.v.jstv.com/images/2016/11/17/JSTV_JSWS_1479345461497_pZgkKi8_0.jpg" webkit-playsinline="true" controls="controls" style="height: 1087.37px;"></video>-->
+	<div class="video  {{sc.frequency==2?'chaoqing':''}}"><video src="" id="J_video" _preload="none" x-webkit-airplay="true" webkit-playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" controls="controls"></video></div>
+	<p class="jmtil bgcfff fs15 pl10"><img src="images/icon_jm.png" class="ia">节目单</p>
+	<div class="listbox ptr" ng-style="boxh">
+		<p class="days pta l0 t0 hp100 alic">
+			<a class="day" ng-repeat="v in days" ng-class="{active:v.egn==dact}" ng-click="changeday(v,$index)">{{v.chn}}</a>
+		</p>
+		<ul class="jmlist bgcfff" id="J_jmlist">
+			<li class="jmli" ng-show="jmlist.length" ng-repeat="v in jmlist" ng-class="((activejson.startTime==v.startTime)&&(activejson.endTime==v.endTime))?'active':''" on-finish-render-filters data-render="goeq" ><p class="ellipsis">{{v.startTime}}&ensp;&ensp;&ensp;{{v.title}}</p><a href="javascript:;" class="btn"  ng-click="seeaction(v,$index)">{{s=(v.timestate|seetype)}}</a></li>
+			<li ng-show="!jmlist.length" ng-style="emptyJm" ng-bind="loadtext">
+
+				<!--<div style="position: absolute;top:0;left:0;bottom:0;right:0;margin:auto">暂无节目单</div>-->
+			</li>
+		</ul>
+	</div>
+	<div class="tvtishi" ng-show="tvtishi" ng-click="tvtip()">
+		<div><img src="images/tvtishi.png" alt=""><p>右上角点击推送到电视</p></div>
+	</div>
+	<div class="chosetv" ng-show="tips" ng-click="resetstate()" style="display: block;">
+		<div class="remotenew" ng-click="stopBubble($event)">
+			<div class="dsn" id="J_add" style="display: block;">
+				<p class="rn-sm fs14 cff">亲，您还未绑定机顶盒哦~</p>
+				<p class="rn-sm fs14 cff">请按以下步骤进行绑定：</p>
+				<p class="rn-sm fs14 cff">1、找到机顶盒首页下方的“微信电视”并进入；</p>
+				<p class="rn-sm fs14 cff">2、使用微信扫描二维码或在微信公众号内输入绑定码；</p>
+				<p class="rn-sm fs14 cff">3、微信公众号内提示“恭喜绑定成功！”即可。</p>
+				<p class="rn-bnts ovh" style="padding-top: 10px;text-align: center;">
+					<a href="#/account/drvice" class="rn-btn" id="J_add_lj">去绑定</a>
+					<a href="javascript:;" class="rn-btn rn-btn-a" id="J_add_qx" ng-click="resetstate()">取消</a>
+
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="botline" botnav active=""></div>

@@ -1,0 +1,84 @@
+<div class="html remote ptr" ng-controller="remoteCtrl" id="J_remote">
+	<div class="toptil"><a href="javascript:;" back class="ico back"></a>遥控器</div>
+	<div class="table">
+		<table class="wp100 alic">
+			<tr>
+				<td width="33%"><a href="javascript:;" class="btn01" ng-click="sentcode(3)"><p class="icoa d"></p>首页</a></td>
+				<td><a href="javascript:;" class="btn01" ng-click="sentcode('menu')"><p class="icoa b"></p>菜单</a></td>
+				<td width="33%"><a href="javascript:;" class="btn01" ng-click="sentcode(88)"><p class="icoa c"></p>待机</a></td>
+			</tr>
+			<tr>
+				<td width="33%">
+					<div class="btn02">
+						<a class="btnud" href="javascript:;" ng-click="sentcode('volup')"><p class="icob a"></p></a>
+						<p class="text">音量</p>
+						<a class="btnud" href="javascript:;" ng-click="sentcode('voldown')"><p class="icob b"></p></a>
+					</div>
+				</td>
+				<td>
+				</td>
+				<td width="33%">
+					<div class="btn02">
+						<a class="btnud" href="javascript:;"  ng-click="sentcode('17')"><p class="icob c"></p></a>
+						<p class="text">频道</p>
+						<a class="btnud" href="javascript:;"  ng-click="sentcode('18')"><p class="icob d"></p></a>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="padding:0 0 .2rem 0;">
+					<div class="svg_box">
+						<svg id="svg" class="svg dsb mc" currentscale="1.2" width="200px" height="200px" viewBox="0 0 200 200"> 
+                			<circle cx="100 " cy="100 " r="99 " stroke="#4f6a8f " stroke-width="1 " fill="none"></circle>
+			                <g class="J_code g1 " ng-click="sentcode('up')" transform="rotate(-45 100 100)">
+			                    <path d="m100 1 A99,99 0 0,1 199,100 L100 100 z " class="cover " ></path>
+			                    <polyline points="140,45 155,45 155,60 " fill="none " stroke="#fff " stroke-width="1 "></polyline>
+			                </g>
+			                <g class="J_code g1" ng-click="sentcode('right')" transform="rotate(45 100 100)">
+			                    <path d="m100 1 A99,99 0 0,1 199,100 L100 100 z " class="cover" fill="none"></path>
+			                    <polyline points="140,45 155,45 155,60 " fill="none" stroke="#fff " stroke-width="1 "></polyline>
+			                </g>
+			                <g class="J_code g1" ng-click="sentcode('bottom')" transform="rotate(135 100 100)">
+			                    <path d="m100 1 A99,99 0 0,1 199,100 L100 100 z " class="cover " fill="none"></path>
+			                    <polyline points="140,45 155,45 155,60 " fill="none " stroke="#fff " stroke-width="1 "></polyline>
+			                </g>
+			                <g class="J_code g1" ng-click="sentcode('left')" transform="rotate(225 100 100)">
+			                    <path d="m100 1 A99,99 0 0,1 199,100 L100 100 z " class="cover " fill="none"></path>
+			                    <polyline points="140,45 155,45 155,60 " fill="none " stroke="#fff " stroke-width="1 "></polyline>
+			                </g>
+			                <g class="J_code yuan" ng-click="sentcode('ok')">
+			                    <circle cx="100 " cy="100 " r="40 " class="cover o" stroke="#4f6a8f " stroke-width="1 " fill="none"></circle>
+			                    <text x="100 " y="50% " fill="#fff " class="t " font-size="20px " text-anchor="middle " dy="8px ">OK</text>
+			                </g>
+            			</svg>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<table class="wp100 alic">
+			<tr>
+				<td width="50%"><a href="javascript:;" class="btn03" ng-click="shownumber()">123</a></td>
+				<td><a href="javascript:;" class="btn03" ng-click="sentcode('back')">返回</a></td>
+			</tr>
+		</table>
+	</div>
+	<div class="rpop" ng-show="pop.box">
+		<a href="javascript:;" class="close" ng-click="closepop()"></a>
+		<div class="numberbox" ng-show="pop.number">
+			<p class="numbers">
+				<a href="javascript:;" class="number" ng-click="sentcode(7)">1</a>
+				<a href="javascript:;" class="number" ng-click="sentcode(8)">2</a>
+				<a href="javascript:;" class="number" ng-click="sentcode(9)">3</a>
+				<a href="javascript:;" class="number" ng-click="sentcode(10)">4</a>
+				<a href="javascript:;" class="number" ng-click="sentcode(11)">5</a>
+				<a href="javascript:;" class="number" ng-click="sentcode(12)">6</a>
+				<a href="javascript:;" class="number" ng-click="sentcode(13)">7</a>
+				<a href="javascript:;" class="number" ng-click="sentcode(14)">8</a>
+				<a href="javascript:;" class="number" ng-click="sentcode(15)">9</a>
+				<a href="javascript:;" class="number" >.</a>
+				<a href="javascript:;" class="number" ng-click="sentcode(16)">0</a>
+				<a href="javascript:;" class="number" >#</a>
+			</p>
+		</div>
+	</div>
+</div>

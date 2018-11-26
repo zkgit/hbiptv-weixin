@@ -1,0 +1,28 @@
+<div class="html account" ng-controller="deviceCtrl">
+	<div class="toptitleline">
+		<a href="javascript:;" back class="ico back"></a>
+		<p class="text">我的电视</p>
+		<a href="javascript:;" class="ico edit" ng-click="edit()"></a>
+	</div>
+	<div class="toptitleline_after"></div>
+	<div class="device ovh" ng-class="{active:isedit}">
+		<div class="ditem mt10" ng-repeat="v in device" ng-click="qiehuan(v.boxId)">
+			<p class="ellipsis">{{v.boxName?v.boxName:v.boxId}}</p>
+			<!--<p class="tools do"><a class="tool a" href="javascript:;" ng-click="godelete()">删除</a>&ensp;&ensp;&ensp;|&ensp;&ensp;&ensp;<a href="javascript:;" class="tool b" ng-click="editdevice(v,$index)">编辑</a></p>-->
+			<p class="tools do"><a class="tool a" href="javascript:;" ng-click="deldevice(v,$index)">删除</a>&ensp;&ensp;&ensp;|&ensp;&ensp;&ensp;<a href="javascript:;" class="tool b" ng-click="editdevice(v,$index)">编辑</a></p>
+			<p class="tools qie"><a href="javascript:;" class="rad" ng-class="v.boxId==deviceActive?'active':''"><img src="images/deviceSelected.png" alt=""></a></p>
+		</div>
+		<a href="javascript:;" class="add_d dsb bgcfff alic c33" ng-click="add_d()"><img src="images/icon_dadd.png" class="ia mr5">新增绑定</a>
+	</div>
+	<div class="pop" ng-show="pop.show">
+		<div class="delbox del" ng-show="pop.del">
+			<p class="deltext">确认要删除该机顶盒吗？</p>
+			<p class="btns alic ovh pb10"><a href="javascript:;" class="delbtn cel" ng-click="cancel()">取消</a><a href="javascript:;" class="delbtn sure" ng-click="godelete()">确认</a></p>
+		</div>
+		<div class="delbox edit" ng-show="pop.edit">
+			<p class="deltext">请输入新的设备名称</p>
+			<p class="delinput pb10"><input type="text" ng-model="dname" class="delctrol" required=""></p>
+			<p class="delbtns alic ovh pb10"><a href="javascript:;" class="delbtn cel" ng-click="cancel()">取消</a><a href="javascript:;" class="delbtn sure" ng-click="surename()">确认</a></p>
+		</div>
+	</div>
+</div>

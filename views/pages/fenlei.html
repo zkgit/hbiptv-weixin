@@ -1,0 +1,9 @@
+<div class="html fenlei" ng-controller="fenleiCtrl">
+	<div class="toptitleline"><p class="text">分类</p></div>
+	<div class="toptitleline_after"></div>
+	<div class="flbox ovh">
+		<a ng-href="#/dianbo/list?coltype={{v.type}}&classId={{v.classId}}" class="ls" ng-repeat="v in list"><img class="icon" ng-src="{{v.image}}">{{v.name}}</a>
+		<a ng-href="javascript:;" class="ls" ng-repeat="v in zblist" ng-click="fencook($index)"><img class="icon"src="images/zb_mark.png">{{v.type_name}}</a>
+	</div>
+</div>
+<div class="botline" botnav active="fenlei"></div>

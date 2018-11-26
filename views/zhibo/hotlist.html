@@ -1,0 +1,35 @@
+<div class="html  hotlist" ng-controller="zhibohotCtrl">
+	<div class="toptitleline">
+		<a href="javascript:;" back class="ico back"></a>
+		<p class="text">当前直播</p>
+	</div>
+	<div class="toptitleline_after"></div>
+	<div class="typelstable">
+		<table>
+			<tr><td ng-repeat="v in typels"><a href="javascript:;" ng-class="{active:tindex==$index}" ng-click="changetype(v,$index)" class="typelstable_ls">{{v.name}}</a></td></tr>
+		</table>
+	</div>
+
+	<div class="chanlsit bgcfff" id="J_list">
+		<div class="cnitem" ng-repeat="v in list" on-finish-render-filters data-render="lazy">
+			<img src="images/icon_tm.png" class="ico_tm">
+			<p class="cnimg"><img original="{{v.imageLink?v.imageLink:v.lpic}}" error="images/ico_df.jpg" class="loading ico lazy"></p>
+			<div class="mid">
+				<p class="til c ellipsis">{{v.title}}</p>
+				<p class="act c66 ellipsis">主持/导演：{{v.director}}</p>
+				<p class="act c66 ellipsis">嘉宾/主演：{{v.actor}}</p>
+				<ul class="cls alic ovh">
+					<li class="li bgc" ng-repeat="vv in v.epgs.slice(0,2)">
+						<a href="#/zhibo/detial?channelId={{vv.channelId}}&ChannelCode={{vv.code}}&channelName={{vv.chaneseName}}&frequency={{vv.frequency}}">
+							<p class="icon bgcfff"><img original="{{vv.icon2}}" error="images/ico_df.jpg" class="loading ico lazy"></p>
+							<p class="cname ellipsis cff">{{vv.chaneseName}}</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<p class="alic ptb10" id="J_loading" ng-bind="loadtext"></p>
+	</div>
+
+</div>
+<div class="botline" botnav active=""></div>

@@ -1,0 +1,16 @@
+<div class="html systemmsg" ng-controller="systemCtrl">
+	<div class="toptitleline">
+		<a href="javascript:;" back class="ico back"></a>
+		<p class="text">系统通知</p>
+		<a href="javascript:;" class="ico read" ng-click="allreaded()">全部标记为已读</a>
+	</div>
+	<div class="toptitleline_after"></div>
+	<div class="ovh">
+		<div class="ls" ng-repeat="v in list" ng-click="readed(v)">
+			<a href="javascript:;" class="yuyin"></a>
+			<p class="til"><span class="st" ng-class="{active:v.status}"></span><span class="til c33 fs13">{{v.title}}</span><span class="time fs10 fr c66">{{v.sendTime}}</span></p>
+			<p class="msg c99 fs12 {{v.shou?'shou':''}}"  style="word-wrap: break-word;">{{v.message}}</p>
+		</div>
+	</div>
+</div>
+<div class="botline" botnav active="account"></div>

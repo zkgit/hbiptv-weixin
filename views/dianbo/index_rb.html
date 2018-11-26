@@ -1,0 +1,85 @@
+<div class="html index zhibo" ng-controller="reboCtrl">
+	<div class="indextopline" indextopline active="rebo"></div>
+	<div ng-show="net">
+		<div class="swipe {{net?'bgcfff':''}}" id="J_banner">
+			<div class="spbox">
+				<p class="spimg" ng-repeat="v in result.poster" on-finish-render-filters data-render="rbanner"><a class="dsb" ng-href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.videoType}}&isMatch={{v.isMatched}}&vodId={{v.vodId}}"><img ng-src="{{v.bimage}}"></a></p>
+			</div>
+			<p class="poter"></p>
+		</div>
+		<div class="">
+			<div class="title">
+				<p class="tilbox">热播推荐<a href="#/dianbo/list?coltype=arts&classId=1015" class="more"></a></p>
+			</div>
+			<div class="pitems">
+				<a href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.videoType}}&isMatch={{v.isMatched}}&vodId={{v.vodId}}" class="pitem" ng-repeat="v in result.rbtj">
+					<p class="pi_ico" showtvtype="v.isMatched"></p>
+					<p class="pi_img"><img ng-src="{{v.crossmap}}"></p>
+					<p class="pi_til">{{v.title}}</p>
+				</a>
+			</div>
+		</div>
+		<div class="">
+			<div class="title">
+				<p class="tilbox">综艺<a href="#/dianbo/list?coltype=arts&classId=1015" class="more"></a></p>
+			</div>
+			<div class="pitems">
+				<a href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.videoType}}&isMatch={{v.isMatched}}&vodId={{v.vodId}}" class="pitem" ng-repeat="v in result.arts">
+					<p class="pi_ico" showtvtype="v.isMatched"></p>
+					<p class="pi_img"><img ng-src="{{v.crossmap}}"></p>
+					<p class="pi_til">{{v.title}}</p>
+				</a>
+			</div>
+		</div>
+		<div class="">
+			<div class="title">
+				<p class="tilbox">电影<a href="#/dianbo/list?coltype=film&classId=1014" class="more"></a></p>
+			</div>
+			<div class="pitems">
+				<a href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.videoType}}&isMatch={{v.isMatched}}&vodId={{v.vodId}}" class="pitem" ng-repeat="v in result.film">
+					<p class="pi_ico" showtvtype="v.isMatched"></p>
+					<p class="pi_img"><img ng-src="{{v.crossmap}}"></p>
+					<p class="pi_til">{{v.title}}</p>
+				</a>
+			</div>
+		</div>
+		<div class="">
+			<div class="title">
+				<p class="tilbox">电视剧<a href="#/dianbo/list?coltype=tv&classId=1012" class="more"></a></p>
+			</div>
+			<div class="pitems">
+				<a href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.videoType}}&isMatch={{v.isMatched}}&vodId={{v.vodId}}" class="pitem" ng-repeat="v in result.tv">
+					<p class="pi_ico" showtvtype="v.isMatched"></p>
+					<p class="pi_img"><img ng-src="{{v.crossmap}}"></p>
+					<p class="pi_til">{{v.title}}</p>
+				</a>
+			</div>
+		</div>
+		<div class="">
+			<div class="title">
+				<p class="tilbox">动漫<a href="#/dianbo/list?coltype=anime&classId=1013" class="more"></a></p>
+			</div>
+			<div class="pitems">
+				<a href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.videoType}}&isMatch={{v.isMatched}}&vodId={{v.vodId}}" class="pitem" ng-repeat="v in result.anime">
+					<p class="pi_ico" showtvtype="v.isMatched"></p>
+					<p class="pi_img"><img ng-src="{{v.crossmap}}"></p>
+					<p class="pi_til">{{v.title}}</p>
+				</a>
+			</div>
+		</div>
+		<div class="">
+			<div class="title">
+				<p class="tilbox">纪录片<a href="#/dianbo/list?coltype=documentary&classId=1016" class="more"></a></p>
+			</div>
+			<div class="pitems">
+				<a href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.videoType}}&isMatch={{v.isMatched}}&vodId={{v.vodId}}" class="pitem" ng-repeat="v in result.documentary">
+					<p class="pi_ico" showtvtype="v.isMatched"></p>
+					<p class="pi_img"><img ng-src="{{v.crossmap}}"></p>
+					<p class="pi_til">{{v.title}}</p>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="html_loading" ng-show="!net" ><img src="images/loading.png" alt=""></div>
+</div>
+<div class="botline" botnav active="index"></div>

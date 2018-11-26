@@ -1,0 +1,96 @@
+<div class="html search" ng-controller="searchCtrl">
+	<div class="searchbox ptf">
+		<div class="souindex">
+		  <input class="sinput" type="text" ng-model="key" ng-change="keylen(key)" placeholder="请输入关键字">
+		  <img src="images/close.png" alt="" id="search_clear" ng-show="keyempty" ng-click="search_clear()" >
+		</div>
+		<a href="javascript:;" class="sbtn" ng-click="search()" ng-show="keyempty">搜索</a>
+		<a href="javascript:;" class="sbtn" ng-show="!keyempty" back>取消</a>
+	</div>
+	<div style="height:0.5rem" ng-show="!textlist.length"></div>
+	<div class="weui_cells weui_cells_access" id="search_show" ng-show="textlist.length" >
+		<div class="weui_cell cursor" ng-repeat="text in textlist" on-finish-render-filters ng-click="search(text)">
+			<div class="weui_cell_bd weui_cell_primary">
+				<p class="ng-binding">{{text}}</p>
+			</div>
+	    </div>
+	</div>
+	<div class="" ng-show="!isresult&&!textlist.length">
+		<div class="mbox">
+			<p class="til a">搜索热词</p>
+			<div class="hotsearch ovh">
+				<p class="lses">
+					<a href="javascript:;" class="hls" ng-repeat="v in hotlist_f" ng-click="selectkey(v.word)"><span class="hnum" ng-class="{active:$index<3}">{{$index+1}}</span>{{v.word}}</a>
+				</p>
+				<p class="lses">
+					<a href="javascript:;" class="hls" ng-repeat="v in hotlist_e" ng-click="selectkey(v.word)"><span class="hnum">{{$index+6}}</span>{{v.word}}</a>
+				</p>
+			</div>
+		</div>
+		<div class="mbox">
+			<p class="til b">您最近搜索过的<a href="javascript:;" class="clear" ng-click="clearhis()">清空记录</a></p>
+			<div class="hissearch ovh">
+				<a href="" class="hls" ng-repeat="v in hiskey" ng-click="selectkey(v)">{{v}}</a>
+			</div>
+			<p class="empty" ng-show="hiskey.length==0">暂无搜索记录</p>
+		</div>
+	</div>
+	<div ng-show="!textlist.length&&isresult">
+		<div class="list bgcfff ovh" id="J_list">
+			<div class="rls" ng-show="list.length" ng-repeat="v in list"  on-finish-render-filters  data-render="lazy">
+				<div class="rls_t">
+					<a href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.videoType}}&isMatch={{v.isMatched}}&vodId={{v.vodId}}">
+						<p class="rimg pta l0 t0 alic"><img original="{{v.image|webandroid|imgclip:'478x330'}}" error="images/ico_df.png" class="loading ico lazy"></p>
+						<p class="rtitle ellipsis fs14 c">{{v.title}}</p>
+						<p class="c66 ellipsis lh20" ng-if="v.videoType=='arts'">综艺&ensp;|&ensp;{{v.region}}&ensp;|&ensp;{{v.year}}</p>
+						<p class="c66 ellipsis lh20" ng-if="v.videoType=='anime'">动漫&ensp;|&ensp;{{v.region}}&ensp;|&ensp;{{v.year}}</p>
+						<p class="c66 ellipsis lh20" ng-if="v.videoType=='film'">电影&ensp;|&ensp;{{v.region}}&ensp;|&ensp;{{v.year}}</p>
+						<p class="c66 ellipsis lh20" ng-if="v.videoType=='tv'">电视剧&ensp;|&ensp;{{v.region}}&ensp;|&ensp;{{v.year}}</p>
+						<p class="c66 ellipsis lh20" ng-if="v.videoType=='documentary'">纪录片&ensp;|&ensp;{{v.region}}&ensp;|&ensp;{{v.year}}</p>
+						<p class="c66 ellipsis lh20" style="height:0.2rem;">{{v.actors}}</p>
+						<p class="plc lh20 c66">{{v.playCount|to_wan}}</p>
+					</a>
+					<p class="lh20 playbtn"><span style="margin-right: 20px;" ng-click="getdetaildata(v.kankeId,v.vodId)">手机播放</span><span ng-if="v.programList.list.length"  ng-click="playjson_tv(v.programList.list[0],v)">电视播放</span></p>
+				</div>
+				<div class="prolist pt10 ovh" ng-if="v.programList.list.length&&v.videoType!='arts'&&v.videoType!='film'&&v.videoType!='documentary'">
+					<p class="proes fl alic"><a href="javascript:;" class="pro_ls" ng-repeat="vv in v.programList.list" ng-click="playjson_tv(vv,v)">{{vv.key?vv.key:$index+1}}</a></p>
+					<a href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.videoType}}&isMatch={{v.isMatched}}&vodId={{v.vodId}}" class="pmore fr">全部</a>
+				</div>
+				<div class="pro_arts prolist pt10 ovh" ng-if="v.programList.list.length&&(v.videoType=='arts'||v.videoType=='documentary')">
+					<p class="alic"><span ng-repeat="vv in v.programList.list.slice(0,3)" ng-click="playjson_tv(vv,v)">{{vv.name}}<a href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.videoType}}&isMatch={{v.isMatched}}&vodId={{v.vodId}}" class="pmore fr" ng-if="$last">全部</a></span></p>
+				</div>
+			</div>
+		</div>
+		<p class="alic ptb10" id="J_loading" ng-show="loadtext" ng-bind="loadtext"></p>
+		<div ng-show="!list.length&&recomFlag">
+			<div class="no_result alic c66 ptb20" >
+				<p>抱歉,&nbsp;&nbsp;" <span class="c33">{{key}}</span>"&nbsp;&nbsp;暂无搜索结果,</p>
+				<p>我们为您推荐了以下影片</p>
+			</div>
+			<p  class="alil p10 c66">热门推荐</p>
+			<div class="recomment bgcfff three ovh">
+					<a href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.classId}}&isMatch={{v.isMatched}}&vodId={{v.vodId}}" class="pitem" ng-repeat="v in recommendlist" on-finish-render-filters data-render="lazy">
+						<!-- <p class="pi_ico" showtvtype="v.epgs"></p> -->
+						<p class="pi_img alic"><img original="{{v.imageLink}}" error="images/ico_df.png" class="loading ico lazy"></p>
+						<p class="pi_til">{{v.word}}</p>
+					</a>
+			</div>
+		</div>
+	</div>
+	<div class="chosetv" ng-show="tips" ng-click="resetstate()" style="display: block;">
+		<div class="remotenew" ng-click="stopBubble($event)">
+			<div class="dsn" id="J_add" style="display: block;">
+				<p class="rn-sm fs14 cff">亲，您还未绑定机顶盒哦~</p>
+				<p class="rn-sm fs14 cff">请按以下步骤进行绑定：</p>
+				<p class="rn-sm fs14 cff">1、找到机顶盒首页下方的“微信电视”并进入；</p>
+				<p class="rn-sm fs14 cff">2、使用微信扫描二维码或在微信公众号内输入绑定码；</p>
+				<p class="rn-sm fs14 cff">3、微信公众号内提示“恭喜绑定成功！”即可。</p>
+				<p class="rn-bnts ovh" style="padding-top: 10px;">
+					<a href="#/account/drvice" class="rn-btn" id="J_add_lj">去绑定</a>
+					<a href="javascript:;" class="rn-btn rn-btn-a" id="J_add_qx" ng-click="resetstate()">取消</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="botline" botnav active="search"></div>

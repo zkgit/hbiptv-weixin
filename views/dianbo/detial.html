@@ -1,0 +1,118 @@
+<div class="html dbdetial" ng-controller="diandetialCtrl">
+	<div class="toptitleline">
+		<a href="javascript:;" back class="ico back"></a>
+		<p class="text" ng-bind="sc.channelName"></p>
+	</div>
+	<div ng-if="net">
+		<div class="toptitletv">
+			<img src="images/tvline.png" alt=""  ng-show= "(sc.columnType!='film'&&(sc.isMatch==1||sc.isMatch==-2)&&pageobj.darma_tv.length>0)||((sc.columnType=='film')&&(sc.isMatch==1||sc.isMatch==-2))" style="position: absolute;right:0.36rem;top:0;">
+			<a href="javascript:;" ng-show="sc.columnType!='film'&&(sc.isMatch==1||sc.isMatch==-2)&&pageobj.darma_tv.length>0" class="ico tv" ng-click="playtv(1)" ></a>
+			<a href="javascript:;" ng-show="(sc.columnType=='film')&&(sc.isMatch==1||sc.isMatch==-2)" class="ico tv" ng-click="playtv()" ></a>
+		</div>
+		<div class="toptitleline_after"></div>
+		<div class="topimg"><img ng-src="{{detial.bpic|imgclip:'640x350'}}"></div>
+		<div class="p10 pb0">
+			<p class="tils fs16 c00">{{detial.title}}</p>
+			<div class="mess c99"><span class="msls" ng-bind="detial.year"></span>&ensp;&ensp;|&ensp;&ensp;播放次数：<span class="msls">{{detial.playCount|to_wan}}</span></div>
+			<p class="text01">导演：{{detial.director}}</p>
+			<p class="text01 ellipsis">主演：{{detial.actor}}</p>
+			<p class="text01">类型：{{detial.tags}}</p>
+			<p class="text01">简介：<span class="" ng-click="changedesc()" style="word-break: break-all;">{{desc}}</span></p>
+		</div>
+		<p class="ovh alir pb10">
+			<span class="statels e fl" ng-if="updaterecords">更新至 {{updaterecords}} 集</span>
+			<a href="javascript:;" class="statels a" ng-click="commentfocus()"><span ng-bind="pltotal"></span>条评论</a>
+			<a href="javascript:;" class="statels b" ng-class="{active:is_like}" ng-click="like()" ng-bind="likenum"></a>
+			<a href="javascript:;" class="statels c" ng-class="{active:is_collect}" ng-click="collect()"></a>
+			<a href="javascript:;" class="statels d" ng-click="goshare()"></a>
+		</p>
+		<div class="partitem mb10 bgcfff ovh" ng-if="sc.columnType=='film'">
+			<p class="parttil">播放来源</p>
+			<div class="fm_f_table">
+				<table><tr><td ng-repeat="v in detial.details"><a href="javascript:;" class="fm_area" ng-click="getsingle(v,$index)">{{v.key}}</a></td></tr></table>
+			</div>
+		</div>
+		<div class="jujiarr mb10 ovh" ng-if="sc.columnType!='film'">
+			<p class="ovh alic {{ctvmb}}"><a href="javascript:;" class="jjtopbtn" ng-class="{active:showjj=='tv'}" ng-click="changepagetab('tv')">电视剧集</a><a href="javascript:;" class="jjtopbtn" ng-class="{active:showjj=='mb'}" ng-click="changepagetab('mb')">手机剧集</a></p>
+			<div class="jjtv bgcfff" ng-show="showjj=='tv'">
+				<div class="jjtv_table"><table><tr><td ng-repeat="v in pageobj.tvtotal"><a href="javascript:;" class="jjls" ng-class="{active:pageobj.index_tv==$index}" ng-click="getdm_tv($index+1)">{{v.part}}</a></td></tr></table></div>
+				<ul class="jjtv_ul ovh alic" ng-if="sc.columnType!='arts'&&sc.columnType!='documentary'">
+					<li class="jjtv_li" ng-repeat="v in pageobj.darma_tv" style="width:{{pageobj.darma_tv[0].key.length>=8?'25%':'20%'}};"><a href="javascript:;" class="jjmb_ls" ng-click="playjson_tv($index)">{{v.key}}</a></li>
+				</ul>
+				<ul class="jjtv_ul ovh " ng-if="sc.columnType=='arts'||sc.columnType=='documentary'">
+					<li class="jjtv_li" ng-repeat="v in pageobj.darma_tv" style="width:100%;"><a href="javascript:;" class="jjmb_ls  ellipsis plr" ng-click="playjson_tv($index)">{{v.name}}</a></li>
+				</ul>
+			</div>
+			<div class="jjmb bgcfff" ng-show="showjj=='mb'">
+				<div class="jjtv_table"><table><tr><td ng-repeat="v in detial.details"><a href="javascript:;" class="jjls" ng-class="{active:pageobj.sindex==$index}" ng-click="gesoursepage(v.key_en,$index)">{{v.key}}</a></td></tr></table></div>
+				<div class="jjtv_table"><table><tr><td ng-repeat="v in pageobj.mbtotal"><a href="javascript:;" class="jjls" ng-class="{active:pageobj.index_mb==$index}" ng-click="getdm_mb($index+1)">{{v.part}}</a></td></tr></table></div>
+				<ul class="jjmb_tv ovh alic" ng-if="sc.columnType!='arts'&&sc.columnType!='documentary'">
+					<li class="jjtv_li" ng-repeat="v in pageobj.darma_mb" ><a href="javascript:;" class="jjmb_ls" ng-click="playlink(v)">{{v.deTitle}}</a></li>
+				</ul>
+				<ul class="jjmb_tv ovh" ng-if="sc.columnType=='arts'||sc.columnType=='documentary'">
+					<li class="jjtv_li" ng-repeat="v in pageobj.darma_mb" style="width:100%;"><a href="javascript:;" class="jjmb_ls  ellipsis plr" ng-click="playlink(v)">{{v.deTitle}}&ensp;&ensp;{{v.description}}</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="partitem mb10 bgcfff" ng-show="actorslist.length>0">
+			<p class="parttil">演员表</p>
+			<div class="actors">
+				<table>
+					<tr><td ng-repeat="v in actorslist"><a ng-href="#/star/detial?id={{v.id}}" class="acls"><p class="achead"><img class="acheadimg" ng-src="{{v.localImageSmall?v.localImageSmall:'images/mxdefault.png'}}"></p><p class="acname ellipsis">{{v.actorName}}</p></a></td></tr>
+				</table>
+			</div>
+		</div>
+		<div class="partitem mb10 bgcfff" ng-show="parttj">
+			<p class="parttil">你可能爱看的</p>
+			<div class="recoed ovh">
+				<a href="#/dianbo/detial?kankeId={{v.kankeId}}&columnType={{v.videoType}}&isMatch={{v.isMatched}}&vodId={{v.vodId}}" class="recols" ng-repeat="v in tjlist"> <p class="pi_img"><img ng-src="{{v.image}}"></p><p class="pi_til">{{v.title}}</p> 	</a>
+			</div>
+		</div>
+		<div class="partitem mb10 bgcfff">
+			<p class="parttil">评论</p>
+			<p class="addcomment ptr">
+				<img ng-src="{{headimg}}" class="img_h pta l10 t10">
+				<input type="text" class="ctrol" ng-model="cmobj.text"  id="J_text" >
+				<a href="javascript:;" class="cmbtn dsb pta r10 alic c00" ng-click="sentmsg()">发送</a>
+			</p>
+			<div class="cmlist">
+				<div class="cmitem ptr" ng-repeat="v in pllist">
+					<img class="img_h pta l0 t10" ng-src="{{v.headImgurl}}">
+					<p class="til c66"><span class="name c33 mr20">{{v.nickname}}</span><span class="time c99">{{v.addtime}}</span></p>
+					<p class="cmtext">{{v.context}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="pop" ng-show="chooseshow">
+			<a href="javascript:;" class="botclose pta l0 t0 wp100 hp100 z2" ng-click="closechoose()"></a>
+			<p class="cbtns alic ovh pta l0 ptb10 wp100 z3">
+				<a href="javascript:;" class="cbtn" ng-click="playmb()">手机播放</a>
+				<a href="javascript:;" class="cbtn" ng-click="playtv()">电视播放</a>
+			</p>
+		</div>
+		<div class="tvtishi" ng-show="tvtishi" ng-click="tvtip()">
+			<div><img src="images/tvtishi.png" alt=""><p>右上角点击推送到电视</p></div>
+		</div>
+		<div class="chosetv" ng-show="tips" ng-click="resetstate()" style="display: block;">
+			<div class="remotenew" ng-click="stopBubble($event)">
+				<div class="dsn" id="J_add" style="display: block;">
+					<p class="rn-sm fs14 cff">亲，您还未绑定机顶盒哦~</p>
+					<p class="rn-sm fs14 cff">请按以下步骤进行绑定：</p>
+					<p class="rn-sm fs14 cff">1、找到机顶盒首页下方的“微信电视”并进入；</p>
+					<p class="rn-sm fs14 cff">2、使用微信扫描二维码或在微信公众号内输入绑定码；</p>
+					<p class="rn-sm fs14 cff">3、微信公众号内提示“恭喜绑定成功！”即可。</p>
+					<p class="rn-bnts ovh" style="padding-top: 10px;">
+						<a href="#/account/drvice" class="rn-btn" id="J_add_lj">去绑定</a>
+						<a href="javascript:;" class="rn-btn rn-btn-a" id="J_add_qx" ng-click="resetstate()">取消</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="sharetishi" id="tshare"  style="position: fixed;z-index: 10;height: 100%; width: 100%;left: 0;top: 0;width:100%;height:100% ;display:none;" ng-click="hideshare()">
+			<div class="tshare"  style="position: absolute;top: 0;"  ng-click="tshare($event)"><img src="images/tshare.png" alt=""></div>
+
+		</div>
+	</div>
+	<div class="html_loading" ng-show="!net" ><img src="images/loading.png" alt=""></div>
+</div>

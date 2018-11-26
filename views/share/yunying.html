@@ -1,0 +1,22 @@
+
+
+
+
+
+
+<div class="toptitleline" >
+    <p class="text">请选择设备</p>
+</div>
+<div class="toptitleline_after"></div>
+<div class="device">
+    <div ng-repeat="v in device" ng-show="!$root.yunying" ng-click="qiehuan((v.boxId.substr(0,2).toUpperCase()==$root.operator)||$root.selfyunying?v.boxId:'')" class="mt10 yunying  account" ng-class="(v.boxId.substr(0,2).toUpperCase()==$root.operator)||$root.selfyunying?'ditem':'hui'">
+        <p class="ellipsis"><img ng-if="v.boxId.substr(0,2).toUpperCase()=='DX'||v.boxId.substr(0,2).toUpperCase()=='YD'||v.boxId.substr(0,2).toUpperCase()=='LT'" src="images/{{((v.boxId.substr(0,2).toUpperCase()=='DX'||v.boxId.substr(0,2).toUpperCase()=='YD'||v.boxId.substr(0,2).toUpperCase()=='LT')&&(v.boxId.substr(0,2).toUpperCase()==$root.operator))||$root.selfyunying?v.boxId.substr(0,2).toUpperCase():v.boxId.substr(0,2).toUpperCase()+'2'}}.jpg" alt="">{{v.boxName?v.boxName:v.boxId}}</p>
+        <p class="tools qie" ng-if="(v.boxId.substr(0,2).toUpperCase()==$root.operator)||$root.selfyunying"><a href="javascript:;" class="rad " ng-class="v.boxId==deviceActive?'active':''"><img src="images/deviceSelected.png" alt=""></a></p>
+    </div>
+</div>
+<div class="gobind" ng-show="!$root.isbind">
+    <img src="images/unbind.png" alt="" class="top" >
+    <p class="alic fs14">您尚未绑定任何设备哦！</p>
+    <p class="alic c99 fon">You are not bound to any device!</p>
+</div>
+<a href="javascript:;" class="add_d dsb bgcfff alic c" ng-click="add_d()"><img src="images/icon_dadd.png" class="ia mr5">新增绑定</a>
